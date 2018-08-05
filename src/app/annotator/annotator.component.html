@@ -1,3 +1,7 @@
 <p>
-  annotator works!
+  Annotate the sentence
 </p>
+<div>
+  <span *ngFor="let word of documentText;let i=index" [ngClass]="calcClass(i)" (click)="toggleTag(i)">{{word}} </span> 
+</div>
+<div>{{selectedText}}</div>
