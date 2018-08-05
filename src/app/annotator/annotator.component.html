@@ -1,7 +1,7 @@
-<p>
-  Annotate the sentence
-</p>
-<div>
-  <span *ngFor="let word of documentText;let i=index" [ngClass]="calcClass(i)" (click)="toggleTag(i)">{{word}} </span> 
-</div>
+<h2 class="mat-h2">
+    Annotate the sentence
+</h2>
+<mat-card>
+    <span *ngFor="let word of documentText;let i=index" [ngClass]="calcClass(i)" (click)="toggleTag(i)">{{word}} </span> 
+</mat-card>
 <div>{{selectedText}}</div>
