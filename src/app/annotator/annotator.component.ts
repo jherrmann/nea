@@ -8,6 +8,8 @@ import { AnnotationService } from '../annotation.service';
 })
 export class AnnotatorComponent implements OnInit {
 
+  entityTypes = [{ name: 'SKONTO_PERCENT', color: 'green' }, { name: 'SKONTO_DAYS', color: 'blue' }];
+  selectedEntity = this.entityTypes[0];
   selectedText = '';
   documentText;
   annotations = [];
@@ -24,8 +26,9 @@ export class AnnotatorComponent implements OnInit {
   }
 
   calcClass(index) {
-    if (this.annotations[index]) {
-      return 'redEntity';
+    const currentAnno = this.annotations[index];
+    if (currentAnno) {
+      return currentAnno.color + 'Entity';
     } else {
       return 'default';
     }
@@ -34,10 +37,10 @@ export class AnnotatorComponent implements OnInit {
   toggleTag(index) {
     if (this.annotations[index]) {
       this.selectedText = '';
-      this.annotations[index] = 0;
+      this.annotations[index] = null;
     } else {
       this.selectedText = this.documentText[index];
-      this.annotations[index] = 1;
+      this.annotations[index] = this.selectedEntity;
     }
   }
 

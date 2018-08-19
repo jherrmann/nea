@@ -1,6 +1,14 @@
 .default {
     background: transparent;
 }
-.redEntity {
-    background: red;
+.blueEntity {
+    background: lightblue;
 }
+.greenEntity {
+    background: lightseagreen;
+}
+
+.entity-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
