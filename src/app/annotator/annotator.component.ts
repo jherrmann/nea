@@ -10,8 +10,7 @@ export class AnnotatorComponent implements OnInit {
 
   entityTypes = [{ name: 'SKONTO_PERCENT', color: 'green' }, { name: 'SKONTO_DAYS', color: 'blue' }];
   selectedEntity = this.entityTypes[0];
-  selectedText = '';
-  documentText;
+  documentText = [];
   annotations = [];
 
   constructor(private annotationService: AnnotationService) { }
@@ -36,10 +35,8 @@ export class AnnotatorComponent implements OnInit {
 
   toggleTag(index) {
     if (this.annotations[index]) {
-      this.selectedText = '';
       this.annotations[index] = null;
     } else {
-      this.selectedText = this.documentText[index];
       this.annotations[index] = this.selectedEntity;
     }
   }
