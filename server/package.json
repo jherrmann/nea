@@ -1,0 +1,16 @@
+{
+  "name": "nea_server",
+  "version": "1.0.0",
+  "description": "Named Entity Annotator backend",
+  "main": "index.js",
+  "author": "Jan Erik Herrmann",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.9"
+  }
+}
