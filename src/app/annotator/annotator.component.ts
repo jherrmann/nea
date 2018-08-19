@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnnotationService } from '../annotation.service';
 
 @Component({
   selector: 'app-annotator',
@@ -8,12 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class AnnotatorComponent implements OnInit {
 
   selectedText = '';
-  documentText = Array('Hier', 'steht', 'ganz',  'viel', 'Text', 'den', 'man', 'selektieren', 'kann', '.');
+  documentText;
   annotations = [];
 
-  constructor() { }
+  constructor(private annotationService: AnnotationService) { }
 
   ngOnInit() {
+    this.getAnnotation();
+  }
+
+  getAnnotation() {
+    const anno = this.annotationService.getAnnotation(123);
+    this.documentText = anno.tokens;
   }
 
   calcClass(index) {
