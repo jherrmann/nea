@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnotationService } from '../annotation.service';
+import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 
 @Component({
   selector: 'app-annotator',
@@ -13,10 +14,19 @@ export class AnnotatorComponent implements OnInit {
   documentText = [];
   annotations = [];
 
-  constructor(private annotationService: AnnotationService) { }
+  constructor(private annotationService: AnnotationService, private _hotkeysService: HotkeysService) {}
 
   ngOnInit() {
     this.getAnnotation();
+    // add hotkeys
+    this._hotkeysService.add(new Hotkey('a', (event: KeyboardEvent): boolean => {
+      this.selectedEntity = this.entityTypes[0];
+      return false; // Prevent bubbling
+    }));
+    this._hotkeysService.add(new Hotkey('b', (event: KeyboardEvent): boolean => {
+      this.selectedEntity = this.entityTypes[1];
+      return false; // Prevent bubbling
+  }));
   }
 
   getAnnotation() {

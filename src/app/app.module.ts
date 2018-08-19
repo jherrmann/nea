@@ -5,6 +5,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 
+import {HotkeyModule} from 'angular2-hotkeys';
+
 import { AppComponent } from './app.component';
 import { AnnotatorComponent } from './annotator/annotator.component';
 
@@ -19,7 +21,8 @@ import { AnnotatorComponent } from './annotator/annotator.component';
     BrowserAnimationsModule,
     MatCardModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    HotkeyModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
