@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {MatRadioModule} from '@angular/material/radio';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 
-import {HotkeyModule} from 'angular2-hotkeys';
+import { HotkeyModule } from 'angular2-hotkeys';
 
 import { AppComponent } from './app.component';
 import { AnnotatorComponent } from './annotator/annotator.component';
@@ -19,6 +20,7 @@ import { AnnotatorComponent } from './annotator/annotator.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatCardModule,
     MatRadioModule,
     FormsModule,

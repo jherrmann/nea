@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { Annotation } from './annotation';
 
 @Injectable({
@@ -6,14 +9,20 @@ import { Annotation } from './annotation';
 })
 export class AnnotationService {
 
-  constructor() { }
+  private serverUrl = 'api/namedentities';
+  constructor(private http: HttpClient) { }
 
-  getAnnotation(id: number) {
-    const anno = new Annotation();
-    // Array('Hier', 'steht', 'ganz',  'viel', 'Text', 'den', 'man', 'selektieren', 'kann', '.');
-    anno.text = 'XYZ grants an early payment discount of two percent (2%) when paid until 10 days after receive of the invoice.';
-    anno.tokens = this.tokenize(anno.text);
-    return anno;
+  getAnnotation(id: string): Observable<Annotation> {
+    const url = `${this.serverUrl}/${id}`;
+    return this.http.get<Annotation>(url).pipe(
+      map(result => {
+        const anno = new Annotation();
+        anno.text = result['text'];
+        anno.tokens = this.tokenize(result['text']);
+        return anno;
+      }),
+      catchError(err => { throw Error(err); })
+    );
   }
   private tokenize(text: string) {
     return text.split(/(\s|\(|\)|\[|\]|%)/g);

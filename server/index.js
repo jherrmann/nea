@@ -9,11 +9,11 @@ const url = 'mongodb://localhost/neaDB';
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// http://localhost:3000/api/namedentities?id=5b79a6ba20e7a0bd3eddb44b
-app.get('/api/namedentities', (req, res) => {
+// http://localhost:3000/api/namedentities/5b59946547c34d5ac72d7284
+app.get('/api/namedentities/:annoId', (req, res) => {
     mongoose.connect(url, function (err) {
         if (err) throw err;
-        Annotation.findById(req.query.id, function (err, anno) {
+        Annotation.findById(req.params.annoId, function (err, anno) {
             if (err) throw err;
             return res.status(200).json(anno)
         })

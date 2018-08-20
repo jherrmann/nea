@@ -14,7 +14,7 @@ export class AnnotatorComponent implements OnInit {
   documentText = [];
   annotations = [];
 
-  constructor(private annotationService: AnnotationService, private _hotkeysService: HotkeysService) {}
+  constructor(private annotationService: AnnotationService, private _hotkeysService: HotkeysService) { }
 
   ngOnInit() {
     this.getAnnotation();
@@ -26,12 +26,12 @@ export class AnnotatorComponent implements OnInit {
     this._hotkeysService.add(new Hotkey('b', (event: KeyboardEvent): boolean => {
       this.selectedEntity = this.entityTypes[1];
       return false; // Prevent bubbling
-  }));
+    }));
   }
 
   getAnnotation() {
-    const anno = this.annotationService.getAnnotation(123);
-    this.documentText = anno.tokens;
+    this.annotationService.getAnnotation('5b59946547c34d5ac72d7284')
+      .subscribe(anno => this.documentText = anno.tokens);
   }
 
   calcClass(index) {
