@@ -17,6 +17,7 @@ export class AnnotationService {
     return this.http.get<Annotation>(url).pipe(
       map(result => {
         const anno = new Annotation();
+        anno.id = result['_id'];
         anno.text = result['text'];
         anno.tokens = this.tokenize(result['text']);
         return anno;
