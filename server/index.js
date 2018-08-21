@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 
+const path = require('path');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const Annotation = require('./model/annotation');
@@ -19,5 +20,7 @@ app.get('/api/namedentities/:annoId', (req, res) => {
         })
     });
 })
+
+app.use('/', express.static(path.join(__dirname, '/public')))
 
 app.listen(3000, () => console.log('NEA server running on port 3000!'))
