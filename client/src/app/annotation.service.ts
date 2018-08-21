@@ -4,6 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Annotation, NamedEntity } from './annotation';
 import { EntityType } from './entitytype';
+import { EntityService } from './entitytype.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { EntityType } from './entitytype';
 export class AnnotationService {
 
   private serverUrl = 'api/namedentities';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private entityTypeService: EntityService) { }
 
   getAnnotation(id: string): Observable<Annotation> {
     const url = `${this.serverUrl}/${id}`;
@@ -49,8 +50,7 @@ export class AnnotationService {
           currentEnd += element.length;
 
           if (currentEntity.begin >= currentStart && currentEntity.end <= currentEnd) {
-            // TODO get entitytype from service
-            entities.push(new EntityType(currentEntity.entity, 'red'));
+            entities.push(this.entityTypeService.getEntityTypeFor(currentEntity.entity));
             currentEntityIdx++;
             currentEntity = namedEntities[currentEntityIdx];
           } else {

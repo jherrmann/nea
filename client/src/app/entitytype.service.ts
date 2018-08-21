@@ -6,7 +6,12 @@ import { EntityType } from './entitytype';
 })
 export class EntityService {
 
-  constructor() { }
+  private entityMap: Map<string, EntityType> = new Map();
+
+  constructor() {
+    this.entityMap.set('PT_SKONTO_PERCENT', new EntityType('PT_SKONTO_PERCENT', 'green'));
+    this.entityMap.set('PT_SKONTO_DUE_DAYS', new EntityType('PT_SKONTO_DUE_DAYS', 'blue'));
+  }
 
   getEntities(): Array<EntityType> {
 
@@ -15,7 +20,11 @@ export class EntityService {
       new EntityType('PT_SKONTO_DUE_DAYS', 'blue')
     ];
 
-    return entities;
+    return Array.from(this.entityMap.values());
+  }
+
+  getEntityTypeFor(entityName: string): EntityType {
+    return this.entityMap.get(entityName);
   }
 
 }
