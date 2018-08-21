@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Entity } from './entity';
+import { EntityType } from './entitytype';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +8,11 @@ export class EntityService {
 
   constructor() { }
 
-  getEntities(): Array<Entity> {
+  getEntities(): Array<EntityType> {
 
     const entities = [
-      new Entity('PT_SKONTO_PERCENT', 'green'),
-      new Entity('PT_SKONTO_DUE_DAYS', 'blue')
+      new EntityType('PT_SKONTO_PERCENT', 'green'),
+      new EntityType('PT_SKONTO_DUE_DAYS', 'blue')
     ];
 
     return entities;

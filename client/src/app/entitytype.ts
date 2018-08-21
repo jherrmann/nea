@@ -1,4 +1,4 @@
-export class Entity {
+export class EntityType {
     name: string;
     color: string;
 

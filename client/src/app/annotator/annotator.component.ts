@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnotationService } from '../annotation.service';
-import { EntityService } from '../entity.service';
+import { EntityService } from '../entitytype.service';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { Annotation } from '../annotation';
-import { Entity } from '../entity';
+import { EntityType } from '../entitytype';
 
 @Component({
   selector: 'app-annotator',
@@ -12,9 +12,9 @@ import { Entity } from '../entity';
 })
 export class AnnotatorComponent implements OnInit {
 
-  private entityTypes: Array<Entity>;
+  private entityTypes: Array<EntityType>;
   private annotation: Annotation = new Annotation();
-  private selectedEntity: Entity;
+  private selectedEntity: EntityType;
 
 
   constructor(private annotationService: AnnotationService, private _hotkeysService: HotkeysService,
