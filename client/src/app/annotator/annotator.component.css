@@ -7,6 +7,9 @@
 .greenEntity {
     background: lightseagreen;
 }
+.redEntity {
+    background: red;
+}
 
 .entity-radio-group {
     display: inline-flex;
