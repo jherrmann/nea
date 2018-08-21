@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnotationService } from '../annotation.service';
+import { EntityService } from '../entity.service';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
+import { Annotation } from '../annotation';
+import { Entity } from '../entity';
 
 @Component({
   selector: 'app-annotator',
@@ -9,15 +12,21 @@ import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 })
 export class AnnotatorComponent implements OnInit {
 
-  entityTypes = [{ name: 'SKONTO_PERCENT', color: 'green' }, { name: 'SKONTO_DAYS', color: 'blue' }];
-  selectedEntity = this.entityTypes[0];
-  documentText = [];
-  annotations = [];
+  private entityTypes: Array<Entity>;
+  private annotation: Annotation = new Annotation();
+  private selectedEntity: Entity;
 
-  constructor(private annotationService: AnnotationService, private _hotkeysService: HotkeysService) {}
+
+  constructor(private annotationService: AnnotationService, private _hotkeysService: HotkeysService,
+  private entityService: EntityService) { }
 
   ngOnInit() {
+    // load entityTypes
+    this.entityTypes = this.entityService.getEntities();
+    this.selectedEntity = this.entityTypes[0];
+    // load current annotation
     this.getAnnotation();
+
     // add hotkeys
     this._hotkeysService.add(new Hotkey('a', (event: KeyboardEvent): boolean => {
       this.selectedEntity = this.entityTypes[0];
@@ -26,28 +35,28 @@ export class AnnotatorComponent implements OnInit {
     this._hotkeysService.add(new Hotkey('b', (event: KeyboardEvent): boolean => {
       this.selectedEntity = this.entityTypes[1];
       return false; // Prevent bubbling
-  }));
+    }));
   }
 
   getAnnotation() {
     this.annotationService.getAnnotation('5b59946547c34d5ac72d7284')
-    .subscribe(anno => this.documentText = anno.tokens);
+      .subscribe(anno => this.annotation = anno);
   }
 
   calcClass(index) {
-    const currentAnno = this.annotations[index];
-    if (currentAnno) {
-      return currentAnno.color + 'Entity';
+    const currentEntity = this.annotation.entities[index];
+    if (currentEntity) {
+      return currentEntity.color + 'Entity';
     } else {
       return 'default';
     }
   }
 
   toggleTag(index) {
-    if (this.annotations[index]) {
-      this.annotations[index] = null;
+    if (this.annotation.entities[index]) {
+      this.annotation.entities[index] = null;
     } else {
-      this.annotations[index] = this.selectedEntity;
+      this.annotation.entities[index] = this.selectedEntity;
     }
   }
 

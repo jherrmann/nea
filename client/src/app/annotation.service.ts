@@ -20,6 +20,8 @@ export class AnnotationService {
         anno.id = result['_id'];
         anno.text = result['text'];
         anno.tokens = this.tokenize(result['text']);
+        // TODO fill correctly
+        anno.entities = [];
         return anno;
       }),
       catchError(err => { throw Error(err); })

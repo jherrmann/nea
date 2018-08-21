@@ -9,5 +9,5 @@
 </mat-radio-group>
 
 <mat-card>
-    <span *ngFor="let word of documentText;let i=index" [ngClass]="calcClass(i)" (click)="toggleTag(i)">{{word}} </span>
+    <span *ngFor="let word of annotation.tokens;let i=index" [ngClass]="calcClass(i)" (click)="toggleTag(i)">{{word}} </span>
 </mat-card>

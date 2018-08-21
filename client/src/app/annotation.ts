@@ -1,9 +1,10 @@
+import { Entity } from './entity';
 
 export class Annotation {
   id: string;
   text: string;
   tokens: Array<string>;
-  annotations: Array<string>;
+  entities: Array<Entity>;
 }
 export interface NamedEntity {
   entity: string;
