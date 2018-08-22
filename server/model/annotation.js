@@ -7,7 +7,7 @@ var namedEntitySchema = new Schema({
   begin: { type: Number, required: true },
   end: { type: Number, required: true },
   value: { type: String, required: true }
-});
+},{ _id : false });
 
 const annotationSchema = new Schema({
   job: { type: Schema.Types.ObjectId },

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 
 import { HotkeyModule } from 'angular2-hotkeys';
@@ -23,6 +24,7 @@ import { AnnotatorComponent } from './annotator/annotator.component';
     HttpClientModule,
     MatCardModule,
     MatRadioModule,
+    MatButtonModule,
     FormsModule,
     HotkeyModule.forRoot()
   ],

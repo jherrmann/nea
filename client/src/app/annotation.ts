@@ -6,14 +6,14 @@ export class Annotation {
   tokens: Array<string>;
   entities: Array<EntityType>;
 }
-export interface NamedEntity {
+export class NamedEntity {
   entity: string;
   begin: number;
   end: number;
   value: string;
 }
 
-export interface AnnotationSource {
+export class AnnotationSource {
   _id: string;
   text: string;
   job: string;

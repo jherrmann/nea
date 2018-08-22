@@ -13,7 +13,7 @@ import { EntityType } from '../entitytype';
 export class AnnotatorComponent implements OnInit {
 
   private entityTypes: Array<EntityType>;
-  private annotation: Annotation = new Annotation();
+  private annotation: Annotation;
   private selectedEntity: EntityType;
 
 
@@ -41,6 +41,11 @@ export class AnnotatorComponent implements OnInit {
   getAnnotation() {
     this.annotationService.getAnnotation('5b59946547c34d5ac72d7284')
       .subscribe(anno => this.annotation = anno);
+  }
+
+  save(): void {
+    this.annotationService.updateAnnotation(this.annotation)
+    .subscribe(() => console.log('save complete'));
   }
 
   calcClass(index) {
