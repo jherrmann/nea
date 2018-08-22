@@ -66,10 +66,13 @@ export class AnnotationService {
           currentStart = currentEnd;
           currentEnd += element.length;
           // console.log(currentStart + ' ' + currentEnd + ' - ' + currentEntity.begin + ' ' + currentEntity.end);
-          if (currentEntity.begin >= currentStart && currentEntity.end <= currentEnd) {
+          if (currentStart >= currentEntity.begin && currentEnd <= currentEntity.end) {
             entities.push(this.entityTypeService.getEntityTypeFor(currentEntity.entity));
-            currentEntityIdx++;
-            currentEntity = namedEntities[currentEntityIdx];
+            // move to next named entity when all his token are exausted
+            if (currentEnd === currentEntity.end) {
+              currentEntityIdx++;
+              currentEntity = namedEntities[currentEntityIdx];
+            }
           } else {
             entities.push(null);
           }
@@ -86,19 +89,28 @@ export class AnnotationService {
     const result = [];
     let currentStart = 0;
     let currentEnd = 0;
+    let currentEntity;
     for (let index = 0; index < anno.tokens.length; index++) {
       const token = anno.tokens[index];
       currentStart = currentEnd;
       currentEnd += token.length;
-      // TODO edge case span multiple token!
       const entity = anno.entities[index];
       if (entity) {
-        const namedEntity = new NamedEntity();
-        namedEntity.entity = entity.name;
-        namedEntity.begin = currentStart;
-        namedEntity.end = currentEnd;
-        namedEntity.value = token;
-        result.push(namedEntity);
+        if (currentEntity && currentEntity.end === currentStart && currentEntity.entity === entity.name) {
+          // append to current named entity
+          currentEntity.end = currentEnd;
+          currentEntity.value += token;
+        } else {
+          // TODO there seams to be a case when an empty namend entity is created
+          // create new named entity
+          const namedEntity = new NamedEntity();
+          namedEntity.entity = entity.name;
+          namedEntity.begin = currentStart;
+          namedEntity.end = currentEnd;
+          namedEntity.value = token;
+          currentEntity = namedEntity;
+          result.push(namedEntity);
+        }
       }
     }
 
