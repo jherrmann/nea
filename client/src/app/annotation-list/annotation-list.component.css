@@ -1,0 +1,9 @@
+mat-list.scrollable {
+    flex-grow: 1;
+    height: 600px;
+    overflow: auto;
+}
+
+.selected {
+    background-color: lightcoral;
+  }

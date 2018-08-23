@@ -7,8 +7,20 @@
 .greenEntity {
     background: lightseagreen;
 }
+.yellowEntity {
+    background: darkgoldenrod;
+}
+.magentaEntity {
+    background: darkmagenta;
+}
+.dodgerblueEntity {
+    background: dodgerblue;
+}
+.grayEntity {
+    background: dimgray;
+}
 .redEntity {
-    background: red;
+    background: firebrick;
 }
 
 .entity-radio-group {

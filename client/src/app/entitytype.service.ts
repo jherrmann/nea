@@ -7,19 +7,27 @@ import { EntityType } from './entitytype';
 export class EntityService {
 
   private entityMap: Map<string, EntityType> = new Map();
+  private entities: Array<EntityType>;
 
   constructor() {
-    this.entityMap.set('PT_SKONTO_PERCENT', new EntityType('PT_SKONTO_PERCENT', 'green'));
-    this.entityMap.set('PT_SKONTO_DUE_DAYS', new EntityType('PT_SKONTO_DUE_DAYS', 'blue'));
+    this.entities = [
+      new EntityType('PT_SKONTO_PERCENT', 'green'),
+      new EntityType('PT_SKONTO_DUE_DAYS', 'blue'),
+      new EntityType('PT_NET_DUE_DAYS', 'yellow'),
+      new EntityType('PT_STARTING_POINT', 'magenta'),
+      new EntityType('PT_LATE_PAY_FEE', 'dodgerblue'),
+      new EntityType('PT_LATE_PAY_DUE_DAYS', 'green'),
+      new EntityType('RULE', 'magenta'),
+      new EntityType('BASE', 'dodgerblue'),
+      new EntityType('CAP', 'gray')
+    ];
+
+    this.entities.forEach(element => {
+      this.entityMap.set(element.name, element);  
+    });
   }
 
   getEntities(): Array<EntityType> {
-
-    const entities = [
-      new EntityType('PT_SKONTO_PERCENT', 'green'),
-      new EntityType('PT_SKONTO_DUE_DAYS', 'blue')
-    ];
-
     return Array.from(this.entityMap.values());
   }
 

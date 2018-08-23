@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list'
+import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 
 import { HotkeyModule } from 'angular2-hotkeys';
@@ -26,7 +28,9 @@ import { AnnotationListComponent } from './annotation-list/annotation-list.compo
     HttpClientModule,
     MatCardModule,
     MatRadioModule,
+    MatListModule,
     MatButtonModule,
+    MatGridListModule,
     FormsModule,
     HotkeyModule.forRoot()
   ],
