@@ -12,7 +12,7 @@ import { EntityType } from '../entitytype';
 })
 export class AnnotatorComponent implements OnInit, OnChanges {
 
-  @Input() anno_id;
+  @Input() anno_id: string;
   private entityTypes: Array<EntityType>;
   private annotation: Annotation;
   private selectedEntity: EntityType;
@@ -41,7 +41,7 @@ export class AnnotatorComponent implements OnInit, OnChanges {
     // only run when property "data" changed
     if (changes['anno_id'] && this.anno_id) {
       // load current annotation
-      this.getAnnotation(this.anno_id.id);
+      this.getAnnotation(this.anno_id);
     }
 }
 

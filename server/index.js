@@ -29,6 +29,14 @@ app.get('/api/namedentities/:annoId', (req, res) => {
         });
 })
 
+app.get('/api/namedentities/', (req, res) => {
+
+    Annotation.find({}, '_id' , function (err, annos) {
+        if (err) throw err;
+        return res.status(200).json(annos)
+    });
+})
+
 app.put('/api/namedentities/:annoId', (req, res) => {
     // Validate Request
     if(!req.body) {

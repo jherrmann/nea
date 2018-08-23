@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let anno of annos" (click)="onSelect(anno)">
-    {{anno.name}}
+    {{anno.id}}
   </li>
 </ul>
 <app-annotator [anno_id]="selectedAnno"></app-annotator>

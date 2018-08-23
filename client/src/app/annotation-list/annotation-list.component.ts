@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AnnotationService } from '../annotation.service';
+import { Annotation } from '../annotation';
 
 @Component({
   selector: 'app-annotation-list',
@@ -7,15 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnnotationListComponent implements OnInit {
 
-  annos = [{ name: 'test', id: '5b59946547c34d5ac72d7284' }];
-  selectedAnno;
-  constructor() { }
+  annos: Array<Annotation>
+  selectedAnno: string;
+
+  constructor(private annotationService: AnnotationService) { }
 
   ngOnInit() {
+    this.annotationService.getAllAnnotations().subscribe(result => this.annos = result);
   }
 
-  onSelect(anno): void {
-    this.selectedAnno = anno;
+  onSelect(anno: Annotation): void {
+    this.selectedAnno = anno.id;
   }
 
 }
