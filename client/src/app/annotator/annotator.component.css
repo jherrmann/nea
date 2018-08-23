@@ -1,4 +1,7 @@
-.button-row button,
-.button-row a {
-  margin-right: 8px;
+.text-card {
+  width: 600px;
+}
+.text-card-content {
+  font-size: 14pt;
+  line-height: 22pt;
 }

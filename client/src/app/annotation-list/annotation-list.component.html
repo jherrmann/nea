@@ -1,10 +1,12 @@
 <mat-grid-list cols="4" rowHeight="600px">
+
+
   <mat-grid-tile>
 
     <mat-radio-group class="entity-radio-group" [(ngModel)]="selectedEntity">
-        <mat-radio-button *ngFor="let entityType of entityTypes" [value]="entityType">
-            <span class="{{entityType.color}}Entity">{{entityType.name}}</span>
-        </mat-radio-button>
+      <mat-radio-button class="entity-radio-button" *ngFor="let entityType of entityTypes" [value]="entityType">
+        <span class="{{entityType.color}}Entity">{{entityType.name}}</span>
+      </mat-radio-button>
     </mat-radio-group>
 
   </mat-grid-tile>
@@ -15,14 +17,10 @@
   </mat-grid-tile>
   <mat-grid-tile>
 
-      <mat-list class="scrollable" dense>
-        <mat-list-item *ngFor="let anno of annos" 
-          [class.selected]="anno.id === selectedAnno"
-          (click)="onSelect(anno)">{{anno.id}}
-        </mat-list-item>
-      </mat-list>
+    <mat-nav-list class="scrollable">
+      <mat-list-item *ngFor="let anno of annos" [class.selected]="anno.id === selectedAnno" (click)="onSelect(anno)">{{anno.id}}
+      </mat-list-item>
+    </mat-nav-list>
 
   </mat-grid-tile>
 </mat-grid-list>
-
-

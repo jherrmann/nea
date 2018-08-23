@@ -30,11 +30,11 @@ export class AnnotationListComponent implements OnInit {
 
 
     // add hotkeys
-    this._hotkeysService.add(new Hotkey('a', (event: KeyboardEvent): boolean => {
+    this._hotkeysService.add(new Hotkey('1', (event: KeyboardEvent): boolean => {
       this.selectedEntity = this.entityTypes[0];
       return false; // Prevent bubbling
     }));
-    this._hotkeysService.add(new Hotkey('b', (event: KeyboardEvent): boolean => {
+    this._hotkeysService.add(new Hotkey('2', (event: KeyboardEvent): boolean => {
       this.selectedEntity = this.entityTypes[1];
       return false; // Prevent bubbling
     }));

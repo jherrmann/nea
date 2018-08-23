@@ -1,16 +1,22 @@
-mat-list.scrollable {
+mat-nav-list.scrollable {
     flex-grow: 1;
     height: 600px;
+    width: 200px;
     overflow: auto;
+    cursor: pointer;
 }
 
 .selected {
-    background-color: lightcoral;
+    background-color: lightslategray;
   }
 
 .entity-radio-group {
     display: inline-flex;
     flex-direction: column;
+}
+
+.entity-radio-button {
+    margin: 5px;
 }
 
 ::ng-deep .default {
