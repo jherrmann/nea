@@ -1,7 +1,16 @@
 <mat-grid-list cols="4" rowHeight="600px">
-  <mat-grid-tile colspan="3">
+  <mat-grid-tile>
 
-    <app-annotator [anno_id]="selectedAnno"></app-annotator>
+    <mat-radio-group class="entity-radio-group" [(ngModel)]="selectedEntity">
+        <mat-radio-button *ngFor="let entityType of entityTypes" [value]="entityType">
+            <span class="{{entityType.color}}Entity">{{entityType.name}}</span>
+        </mat-radio-button>
+    </mat-radio-group>
+
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+
+    <app-annotator [anno_id]="selectedAnno" [selectedEntity]="selectedEntity"></app-annotator>
 
   </mat-grid-tile>
   <mat-grid-tile>

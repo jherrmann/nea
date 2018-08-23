@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { AnnotationService } from '../annotation.service';
 import { EntityService } from '../entitytype.service';
-import { HotkeysService, Hotkey } from 'angular2-hotkeys';
+
 import { Annotation } from '../annotation';
 import { EntityType } from '../entitytype';
 
@@ -15,26 +15,13 @@ export class AnnotatorComponent implements OnInit, OnChanges {
   @Input() anno_id: string;
   private entityTypes: Array<EntityType>;
   private annotation: Annotation;
+  @Input()
   private selectedEntity: EntityType;
 
 
-  constructor(private annotationService: AnnotationService, private _hotkeysService: HotkeysService,
-  private entityService: EntityService) { }
+  constructor(private annotationService: AnnotationService, private entityService: EntityService) { }
 
   ngOnInit() {
-    // load entityTypes
-    this.entityTypes = this.entityService.getEntities();
-    this.selectedEntity = this.entityTypes[0];
-
-    // add hotkeys
-    this._hotkeysService.add(new Hotkey('a', (event: KeyboardEvent): boolean => {
-      this.selectedEntity = this.entityTypes[0];
-      return false; // Prevent bubbling
-    }));
-    this._hotkeysService.add(new Hotkey('b', (event: KeyboardEvent): boolean => {
-      this.selectedEntity = this.entityTypes[1];
-      return false; // Prevent bubbling
-    }));
   }
 
   ngOnChanges(changes: SimpleChanges) {

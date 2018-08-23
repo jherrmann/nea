@@ -7,3 +7,33 @@ mat-list.scrollable {
 .selected {
     background-color: lightcoral;
   }
+
+.entity-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+::ng-deep .default {
+    background: transparent;
+}
+::ng-deep .blueEntity {
+    background: lightblue;
+}
+::ng-deep .greenEntity {
+    background: lightseagreen;
+}
+::ng-deep .yellowEntity {
+    background: darkgoldenrod;
+}
+::ng-deep .magentaEntity {
+    background: magenta;
+}
+::ng-deep .dodgerblueEntity {
+    background: dodgerblue;
+}
+::ng-deep .grayEntity {
+    background: dimgray;
+}
+::ng-deep .redEntity {
+    background: firebrick;
+}

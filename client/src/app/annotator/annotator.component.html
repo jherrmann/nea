@@ -2,12 +2,6 @@
     Annotate the sentence
 </h2>
 
-<mat-radio-group class="entity-radio-group" [(ngModel)]="selectedEntity">
-    <mat-radio-button *ngFor="let entityType of entityTypes" [value]="entityType">
-        <span class="{{entityType.color}}Entity">{{entityType.name}}</span>
-    </mat-radio-button>
-</mat-radio-group>
-
 <div *ngIf="annotation">
     <mat-card>
         <span *ngFor="let word of annotation.tokens;let i=index" [ngClass]="calcClass(i)" (click)="toggleTag(i)">{{word}}</span>

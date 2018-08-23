@@ -1,33 +1,3 @@
-.default {
-    background: transparent;
-}
-.blueEntity {
-    background: lightblue;
-}
-.greenEntity {
-    background: lightseagreen;
-}
-.yellowEntity {
-    background: darkgoldenrod;
-}
-.magentaEntity {
-    background: magenta;
-}
-.dodgerblueEntity {
-    background: dodgerblue;
-}
-.grayEntity {
-    background: dimgray;
-}
-.redEntity {
-    background: firebrick;
-}
-
-.entity-radio-group {
-    display: inline-flex;
-    flex-direction: column;
-  }
-
 .button-row button,
 .button-row a {
   margin-right: 8px;
