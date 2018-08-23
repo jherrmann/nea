@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let anno of annos" (click)="onSelect(anno)">
+    {{anno.name}}
+  </li>
+</ul>
+<app-annotator [anno_id]="selectedAnno"></app-annotator>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { AnnotationService } from '../annotation.service';
 import { EntityService } from '../entitytype.service';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
@@ -10,8 +10,9 @@ import { EntityType } from '../entitytype';
   templateUrl: './annotator.component.html',
   styleUrls: ['./annotator.component.css']
 })
-export class AnnotatorComponent implements OnInit {
+export class AnnotatorComponent implements OnInit, OnChanges {
 
+  @Input() anno_id;
   private entityTypes: Array<EntityType>;
   private annotation: Annotation;
   private selectedEntity: EntityType;
@@ -24,8 +25,6 @@ export class AnnotatorComponent implements OnInit {
     // load entityTypes
     this.entityTypes = this.entityService.getEntities();
     this.selectedEntity = this.entityTypes[0];
-    // load current annotation
-    this.getAnnotation();
 
     // add hotkeys
     this._hotkeysService.add(new Hotkey('a', (event: KeyboardEvent): boolean => {
@@ -38,8 +37,16 @@ export class AnnotatorComponent implements OnInit {
     }));
   }
 
-  getAnnotation() {
-    this.annotationService.getAnnotation('5b59946547c34d5ac72d7284')
+  ngOnChanges(changes: SimpleChanges) {
+    // only run when property "data" changed
+    if (changes['anno_id'] && this.anno_id) {
+      // load current annotation
+      this.getAnnotation(this.anno_id.id);
+    }
+}
+
+  getAnnotation(id: string): void {
+    this.annotationService.getAnnotation(id)
       .subscribe(anno => this.annotation = anno);
   }
 

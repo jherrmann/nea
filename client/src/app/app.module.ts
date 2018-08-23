@@ -11,12 +11,14 @@ import { HotkeyModule } from 'angular2-hotkeys';
 
 import { AppComponent } from './app.component';
 import { AnnotatorComponent } from './annotator/annotator.component';
+import { AnnotationListComponent } from './annotation-list/annotation-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AnnotatorComponent
+    AnnotatorComponent,
+    AnnotationListComponent
   ],
   imports: [
     BrowserModule,
