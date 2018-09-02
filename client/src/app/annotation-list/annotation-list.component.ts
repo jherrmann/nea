@@ -12,7 +12,7 @@ import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 })
 export class AnnotationListComponent implements OnInit {
 
-  annos: Array<Annotation>
+  annos: Array<Annotation>;
   selectedAnno: string;
   private entityTypes: Array<EntityType>;
   private selectedEntity: EntityType;
@@ -42,6 +42,10 @@ export class AnnotationListComponent implements OnInit {
 
   onSelect(anno: Annotation): void {
     this.selectedAnno = anno.id;
+  }
+
+  onEntitySelect(entity: EntityType): void {
+    this.selectedEntity = entity;
   }
 
 }

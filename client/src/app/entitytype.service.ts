@@ -14,11 +14,11 @@ export class EntityService {
       new EntityType('PT_SKONTO_PERCENT', 'green'),
       new EntityType('PT_SKONTO_DUE_DAYS', 'blue'),
       new EntityType('PT_NET_DUE_DAYS', 'yellow'),
-      new EntityType('PT_STARTING_POINT', 'magenta'),
-      new EntityType('PT_LATE_PAY_FEE', 'dodgerblue'),
+      new EntityType('PT_STARTING_POINT', 'orange'),
+      new EntityType('PT_LATE_PAY_FEE', 'darkgreen'),
       new EntityType('PT_LATE_PAY_DUE_DAYS', 'green'),
-      new EntityType('RULE', 'magenta'),
-      new EntityType('BASE', 'dodgerblue'),
+      new EntityType('RULE', 'orange'),
+      new EntityType('BASE', 'darkgreen'),
       new EntityType('CAP', 'gray')
     ];
 
