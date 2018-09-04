@@ -14,8 +14,8 @@ export class AnnotationListComponent implements OnInit {
 
   annos: Array<Annotation>;
   selectedAnno: string;
-  private entityTypes: Array<EntityType>;
-  private selectedEntity: EntityType;
+  entityTypes: Array<EntityType>;
+  selectedEntity: EntityType;
 
   constructor(private annotationService: AnnotationService, private entityService: EntityService,
     private _hotkeysService: HotkeysService) { }

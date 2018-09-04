@@ -1,6 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { AnnotationService } from '../annotation.service';
-import { EntityService } from '../entitytype.service';
 
 import { Annotation } from '../annotation';
 import { EntityType } from '../entitytype';
@@ -13,13 +12,12 @@ import { EntityType } from '../entitytype';
 export class AnnotatorComponent implements OnInit, OnChanges {
 
   @Input() anno_id: string;
-  private entityTypes: Array<EntityType>;
-  private annotation: Annotation;
+  annotation: Annotation;
   @Input()
-  private selectedEntity: EntityType;
+  selectedEntity: EntityType;
 
 
-  constructor(private annotationService: AnnotationService, private entityService: EntityService) { }
+  constructor(private annotationService: AnnotationService) { }
 
   ngOnInit() {
   }
