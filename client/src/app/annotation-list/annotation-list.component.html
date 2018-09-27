@@ -1,4 +1,5 @@
 <mat-nav-list class="scrollable">
+  <h3 mat-subheader>Texts</h3>
   <mat-list-item *ngFor="let anno of annos" [class.selected]="anno.id === selectedAnno" (click)="onSelect(anno)">{{anno.id}}
   </mat-list-item>
 </mat-nav-list>
