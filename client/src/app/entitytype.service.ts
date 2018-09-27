@@ -23,7 +23,7 @@ export class EntityService {
     ];
 
     this.entities.forEach(element => {
-      this.entityMap.set(element.name, element);  
+      this.entityMap.set(element.name, element);
     });
   }
 

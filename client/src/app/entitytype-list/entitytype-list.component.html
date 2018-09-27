@@ -1,0 +1,9 @@
+<mat-nav-list>
+  <h3 mat-subheader>Entity Types</h3>
+  <mat-list-item *ngFor="let entityType of entityTypes; last as last" 
+    [class.selected]="entityType === selectedEntity"
+    (click)="onEntitySelect(entityType)">
+    <span class="square {{entityType.color}}Entity"></span>{{entityType.name}}
+    <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+  </mat-list-item>
+</mat-nav-list>

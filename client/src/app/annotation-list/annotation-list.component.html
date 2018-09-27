@@ -1,37 +1,4 @@
-<mat-grid-list cols="4" rowHeight="600px">
-
-
-  <mat-grid-tile>
-
-    <mat-nav-list>
-      <h3 mat-subheader>Entity Types</h3>
-      <mat-list-item *ngFor="let entityType of entityTypes; last as last"
-      [class.selected]="entityType === selectedEntity"
-      (click)="onEntitySelect(entityType)">
-        <!--mat-icon class="red">brightness_1</mat-icon-->
-        <span class="square {{entityType.color}}Entity"></span>{{entityType.name}} 
-        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-      </mat-list-item>
-    </mat-nav-list>
-
-    <!--mat-radio-group class="entity-radio-group" [(ngModel)]="selectedEntity">
-      <mat-radio-button class="entity-radio-button" *ngFor="let entityType of entityTypes" [value]="entityType">
-        <span class="entity-shortcut {{entityType.color}}Entity">1</span><span class="entity-name">{{entityType.name}}</span>
-      </mat-radio-button>
-    </mat-radio-group-->
-
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-
-    <app-annotator [anno_id]="selectedAnno" [selectedEntity]="selectedEntity"></app-annotator>
-
-  </mat-grid-tile>
-  <mat-grid-tile>
-
-    <mat-nav-list class="scrollable">
-      <mat-list-item *ngFor="let anno of annos" [class.selected]="anno.id === selectedAnno" (click)="onSelect(anno)">{{anno.id}}
-      </mat-list-item>
-    </mat-nav-list>
-
-  </mat-grid-tile>
-</mat-grid-list>
+<mat-nav-list class="scrollable">
+  <mat-list-item *ngFor="let anno of annos" [class.selected]="anno.id === selectedAnno" (click)="onSelect(anno)">{{anno.id}}
+  </mat-list-item>
+</mat-nav-list>

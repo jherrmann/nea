@@ -8,47 +8,4 @@ mat-nav-list.scrollable {
 
 .selected {
     background-color: lightgray;
-  }
-
-.entity-radio-group {
-    display: inline-flex;
-    flex-direction: column;
-}
-
-.entity-radio-button {
-    margin: 5px;
-}
-.red {
-    color: firebrick;
-}
-
-.square {
-    width: 50px;
-    height: 100%;
-    margin-right: 1em;
-}
-
-::ng-deep .default {
-    background: transparent;
-}
-::ng-deep .blueEntity {
-    background: #233D4D;
-}
-::ng-deep .greenEntity {
-    background: #A1C181;
-}
-::ng-deep .yellowEntity {
-    background: #FCCA46;
-}
-::ng-deep .orangeEntity {
-    background: #FE7F2D;
-}
-::ng-deep .darkgreenEntity {
-    background: #579C87;
-}
-::ng-deep .grayEntity {
-    background: dimgray;
-}
-::ng-deep .redEntity {
-    background: firebrick;
 }

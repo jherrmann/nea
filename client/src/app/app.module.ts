@@ -19,13 +19,15 @@ import { HotkeyModule } from 'angular2-hotkeys';
 import { AppComponent } from './app.component';
 import { AnnotatorComponent } from './annotator/annotator.component';
 import { AnnotationListComponent } from './annotation-list/annotation-list.component';
+import { EntitytypeListComponent } from './entitytype-list/entitytype-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AnnotatorComponent,
-    AnnotationListComponent
+    AnnotationListComponent,
+    EntitytypeListComponent
   ],
   imports: [
     BrowserModule,

@@ -39,7 +39,7 @@ export class AnnotationService {
     const url = `${this.serverUrl}`;
     return this.http.get<Array<Annotation>>(url).pipe(
         map(result => {
-        return result.map( annoSource => { 
+        return result.map( annoSource => {
           const anno = new Annotation();
           anno.id = annoSource['_id'];
           return anno;

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AnnotationService } from '../annotation.service';
 
 import { Annotation } from '../annotation';
@@ -9,11 +9,10 @@ import { EntityType } from '../entitytype';
   templateUrl: './annotator.component.html',
   styleUrls: ['./annotator.component.css']
 })
-export class AnnotatorComponent implements OnInit, OnChanges {
+export class AnnotatorComponent implements OnInit {
 
-  @Input() anno_id: string;
+  anno_id: string;
   annotation: Annotation;
-  @Input()
   selectedEntity: EntityType;
 
 
@@ -22,13 +21,17 @@ export class AnnotatorComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // only run when property "data" changed
-    if (changes['anno_id'] && this.anno_id) {
+  onAnnoSelect(annoId: string) {
+    if (this.anno_id !== annoId) {
+      this.anno_id = annoId;
       // load current annotation
       this.getAnnotation(this.anno_id);
     }
-}
+  }
+
+  onEntitySelect(entity: EntityType) {
+    this.selectedEntity = entity;
+  }
 
   getAnnotation(id: string): void {
     this.annotationService.getAnnotation(id)

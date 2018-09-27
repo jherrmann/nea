@@ -1,0 +1,42 @@
+mat-nav-list.scrollable {
+    flex-grow: 1;
+    height: 600px;
+    width: 200px;
+    overflow: auto;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: lightgray;
+}
+
+.square {
+    width: 50px;
+    height: 100%;
+    margin-right: 1em;
+}
+
+::ng-deep .default {
+    background: transparent;
+}
+::ng-deep .blueEntity {
+    background: #233D4D;
+}
+::ng-deep .greenEntity {
+    background: #A1C181;
+}
+::ng-deep .yellowEntity {
+    background: #FCCA46;
+}
+::ng-deep .orangeEntity {
+    background: #FE7F2D;
+}
+::ng-deep .darkgreenEntity {
+    background: #579C87;
+}
+::ng-deep .grayEntity {
+    background: dimgray;
+}
+::ng-deep .redEntity {
+    background: firebrick;
+}
