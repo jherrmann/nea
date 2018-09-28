@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { EntityService } from '../entitytype.service';
 import { EntityType } from '../entitytype';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
@@ -10,6 +10,7 @@ import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 })
 export class EntitytypeListComponent implements OnInit {
 
+  private hotKeyMax = 9;
   entityTypes: Array<EntityType>;
   selectedEntity: EntityType;
   @Output() selectedEntityEvent = new EventEmitter<EntityType>();
@@ -21,16 +22,19 @@ export class EntitytypeListComponent implements OnInit {
     // load entityTypes
     this.entityTypes = this.entityService.getEntities();
     this.onEntitySelect(this.entityTypes[0]);
+    this.addHotkeys();
+  }
 
-    // add hotkeys
-    this._hotkeysService.add(new Hotkey('1', (event: KeyboardEvent): boolean => {
-      this.onEntitySelect(this.entityTypes[0]);
-      return false; // Prevent bubbling
-    }));
-    this._hotkeysService.add(new Hotkey('2', (event: KeyboardEvent): boolean => {
-      this.onEntitySelect(this.entityTypes[1]);
-      return false; // Prevent bubbling
-    }));
+  addHotkeys() {
+    let hotkey = 1;
+    while (this.entityTypes.length >= hotkey && hotkey <= this.hotKeyMax) {
+      const entityKey = hotkey - 1;
+      this._hotkeysService.add(new Hotkey(hotkey.toString(), (event: KeyboardEvent): boolean => {
+        this.onEntitySelect(this.entityTypes[entityKey]);
+        return false; // Prevent bubbling
+      }));
+      hotkey++;
+    }
   }
 
   onEntitySelect(entity: EntityType): void {
