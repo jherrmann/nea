@@ -1,5 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { AnnotationService } from '../annotation.service';
+import { AnnotationListComponent } from '../annotation-list/annotation-list.component';
 
 import { Annotation } from '../annotation';
 import { EntityType } from '../entitytype';
@@ -15,6 +16,8 @@ export class AnnotatorComponent implements OnInit {
   annotation: Annotation;
   selectedEntity: EntityType;
 
+  @ViewChild(AnnotationListComponent)
+  private annotationListComponent: AnnotationListComponent;
 
   constructor(private annotationService: AnnotationService) { }
 
@@ -41,6 +44,14 @@ export class AnnotatorComponent implements OnInit {
   save(): void {
     this.annotationService.updateAnnotation(this.annotation)
     .subscribe(() => console.log('save complete'));
+  }
+
+  nextAnno(): void {
+    this.annotationListComponent.next();
+  }
+
+  previousAnno(): void {
+    this.annotationListComponent.previous();
   }
 
   calcClass(index) {
