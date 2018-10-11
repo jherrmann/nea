@@ -1,9 +1,8 @@
 mat-nav-list.scrollable {
     flex-grow: 1;
     height: 600px;
-    width: 200px;
+    width: 300px;
     overflow: auto;
-    cursor: pointer;
 }
 
 .selected {

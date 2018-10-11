@@ -1,5 +1,5 @@
+<h2 class="mat-h2">Texts</h2>
 <mat-nav-list class="scrollable">
-  <h3 mat-subheader>Texts</h3>
   <mat-list-item *ngFor="let anno of annos; index as i" [class.selected]="anno.id === selectedAnno" (click)="onSelect(anno, i)">{{anno.id}}
   </mat-list-item>
 </mat-nav-list>

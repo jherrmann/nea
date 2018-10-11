@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
   selector: 'app-annotator',
   template: ''
 })
-class MockAnnotatorComponent implements Component {
+class MockAnnotatorComponent {
   selector: 'app-annotator';
   template: '';
   styleUrls: [''];
