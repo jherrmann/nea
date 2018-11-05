@@ -20,9 +20,11 @@ export class EntitytypeListComponent implements OnInit {
 
   ngOnInit() {
     // load entityTypes
-    this.entityTypes = this.entityService.getEntities();
-    this.onEntitySelect(this.entityTypes[0]);
-    this.addHotkeys();
+    this.entityService.getEntities().subscribe(result => {
+      this.entityTypes = result;
+      this.onEntitySelect(this.entityTypes[0]);
+      this.addHotkeys();
+    });
   }
 
   addHotkeys() {

@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { EntityType } from './entitytype';
 
 @Injectable({
@@ -6,10 +9,11 @@ import { EntityType } from './entitytype';
 })
 export class EntityService {
 
+  private serverUrl = 'api/entitytypes';
   private entityMap: Map<string, EntityType> = new Map();
-  private entities: Array<EntityType>;
 
-  constructor() {
+  constructor(private http: HttpClient) {
+    /*
     this.entities = [
       new EntityType('PT_SKONTO_PERCENT', 'green'),
       new EntityType('PT_SKONTO_DUE_DAYS', 'blue'),
@@ -24,11 +28,23 @@ export class EntityService {
 
     this.entities.forEach(element => {
       this.entityMap.set(element.name, element);
-    });
+    }); */
   }
 
-  getEntities(): Array<EntityType> {
-    return Array.from(this.entityMap.values());
+  getEntities(): Observable<Array<EntityType>> {
+    const url = `${this.serverUrl}`;
+    return this.http.get<Array<EntityType>>(url).pipe(
+      map(result => {
+        return result.map(entitytypeSource => {
+          const entitytype = new EntityType(entitytypeSource['name'], entitytypeSource['color']);
+          return entitytype;
+        });
+      }),
+      tap(entitytypes => entitytypes.forEach(element => {
+        this.entityMap.set(element.name, element);
+      })),
+      catchError(err => { throw Error(err); })
+    );
   }
 
   getEntityTypeFor(entityName: string): EntityType {

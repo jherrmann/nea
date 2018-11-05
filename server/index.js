@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const Annotation = require('./model/annotation');
+const EntityType = require('./model/entitytype');
 const url = 'mongodb://localhost/neaDB';
 
 app.use(bodyParser.json())
@@ -19,6 +20,14 @@ mongoose.connect(url, {
     console.log('Could not connect to the database. Exiting now...');
     process.exit();
 });
+
+app.get('/api/entitytypes/', (req, res) => {
+
+    EntityType.find({}, function (err, entities) {
+        if (err) throw err;
+        return res.status(200).json(entities)
+    });
+})
 
 // http://localhost:3000/api/namedentities/5b59946547c34d5ac72d7284
 app.get('/api/namedentities/:annoId', (req, res) => {
