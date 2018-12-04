@@ -14,11 +14,17 @@
 ::ng-deep .blueEntity {
     background: #376079;
 }
+::ng-deep .lightblueEntity {
+    background: lightblue;
+}
 ::ng-deep .greenEntity {
     background: #A1C181;
 }
 ::ng-deep .yellowEntity {
     background: #FCCA46;
+}
+::ng-deep .darkyellowEntity {
+    background: darkgoldenrod;
 }
 ::ng-deep .orangeEntity {
     background: #FE7F2D;
@@ -26,8 +32,14 @@
 ::ng-deep .darkgreenEntity {
     background: #579C87;
 }
+::ng-deep .lightgreenEntity {
+    background: lightgreen;
+}
 ::ng-deep .grayEntity {
     background: dimgray;
+}
+::ng-deep .lightgrayEntity {
+    background: lightgray;
 }
 ::ng-deep .redEntity {
     background: firebrick;
