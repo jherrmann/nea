@@ -1,5 +1,5 @@
 <h2 class="mat-h2">Entity Types</h2>
-<mat-nav-list>
+<mat-nav-list class="scrollable">
   <mat-list-item *ngFor="let entityType of entityTypes; last as last" 
     [class.selected]="entityType === selectedEntity"
     (click)="onEntitySelect(entityType)">
