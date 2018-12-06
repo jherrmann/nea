@@ -22,19 +22,24 @@ export class EntitytypeListComponent implements OnInit {
 
   ngOnInit() {
     // load entityTypes
-    this.entityService.getEntities().subscribe(result => {
-      this.entityTypes = result;
-      this.onEntitySelect(this.entityTypes[0]);
-      this.addHotkeys();
-    });
+    this.loadEntityTypes();
     // load entitySetNames
     this.entityService.getEntitySetNames().subscribe(result => {
       this.entitySetList = result;
     });
   }
 
+  loadEntityTypes() {
+    this.entityService.getEntities(this.selectedEntitySet).subscribe(result => {
+      this.entityTypes = result;
+      this.onEntitySelect(this.entityTypes[0]);
+      this.addHotkeys();
+    });
+  }
+
   addHotkeys() {
     let hotkey = 1;
+    this._hotkeysService.reset();
     while (this.entityTypes.length >= hotkey && hotkey <= this.hotKeyMax) {
       const entityKey = hotkey - 1;
       this._hotkeysService.add(new Hotkey(hotkey.toString(), (event: KeyboardEvent): boolean => {
@@ -54,6 +59,7 @@ export class EntitytypeListComponent implements OnInit {
 
   onChangeEntitySet(newValue): void {
     this.selectedEntitySet = newValue;
+    this.loadEntityTypes();
   }
 
 }

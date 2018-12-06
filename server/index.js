@@ -23,7 +23,13 @@ mongoose.connect(url, {
 
 app.get('/api/entitytypes/', (req, res) => {
 
-    EntityType.find({}, function (err, entities) {
+    let sets = req.query.sets;
+    let query = {}
+    if(sets) {
+        query = { set: {"$in": sets } } 
+    }
+
+    EntityType.find(query, function (err, entities) {
         if (err) throw err;
         return res.status(200).json(entities)
     });

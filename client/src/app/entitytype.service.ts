@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { EntityType } from './entitytype';
@@ -14,9 +14,18 @@ export class EntityService {
 
   constructor(private http: HttpClient) { }
 
-  getEntities(): Observable<Array<EntityType>> {
+  getEntities(setNames: Array<string>): Observable<Array<EntityType>> {
     const url = `${this.serverUrl}`;
-    return this.http.get<Array<EntityType>>(url).pipe(
+
+    // entity set names are passed to the query param sets as array
+    let params = new HttpParams();
+    if(setNames) {
+      setNames.forEach(setname => {
+        params = params.append(`sets[]`, setname);
+      });
+    }
+
+    return this.http.get<Array<EntityType>>(url, { params: params }).pipe(
       map(result => {
         return result.map(entitytypeSource => {
           const entitytype = new EntityType(entitytypeSource['name'], entitytypeSource['color']);
