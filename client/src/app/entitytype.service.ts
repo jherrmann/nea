@@ -12,24 +12,7 @@ export class EntityService {
   private serverUrl = 'api/entitytypes';
   private entityMap: Map<string, EntityType> = new Map();
 
-  constructor(private http: HttpClient) {
-    /*
-    this.entities = [
-      new EntityType('PT_SKONTO_PERCENT', 'green'),
-      new EntityType('PT_SKONTO_DUE_DAYS', 'blue'),
-      new EntityType('PT_NET_DUE_DAYS', 'yellow'),
-      new EntityType('PT_STARTING_POINT', 'orange'),
-      new EntityType('PT_LATE_PAY_FEE', 'darkgreen'),
-      new EntityType('PT_LATE_PAY_DUE_DAYS', 'gray'),
-      new EntityType('RULE', 'orange'),
-      new EntityType('BASE', 'darkgreen'),
-      new EntityType('CAP', 'gray')
-    ];
-
-    this.entities.forEach(element => {
-      this.entityMap.set(element.name, element);
-    }); */
-  }
+  constructor(private http: HttpClient) { }
 
   getEntities(): Observable<Array<EntityType>> {
     const url = `${this.serverUrl}`;
@@ -49,6 +32,11 @@ export class EntityService {
 
   getEntityTypeFor(entityName: string): EntityType {
     return this.entityMap.get(entityName);
+  }
+  
+  getEntitySetNames(): Observable<Array<string>> {
+    const url = 'api/entitysets';
+    return this.http.get<Array<string>>(url);
   }
 
 }

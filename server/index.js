@@ -29,6 +29,14 @@ app.get('/api/entitytypes/', (req, res) => {
     });
 })
 
+app.get('/api/entitysets/', (req, res) => {
+
+    EntityType.distinct('set', function (err, entities) {
+        if (err) throw err;
+        return res.status(200).json(entities)
+    });
+})
+
 // http://localhost:3000/api/namedentities/5b59946547c34d5ac72d7284
 app.get('/api/namedentities/:annoId', (req, res) => {
 

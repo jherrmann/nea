@@ -14,8 +14,8 @@ export class EntitytypeListComponent implements OnInit {
   entityTypes: Array<EntityType>;
   selectedEntity: EntityType;
   @Output() selectedEntityEvent = new EventEmitter<EntityType>();
-  entitySetList =  [ 'Set_1', 'Set_2' ];
-  selectedEntitySet: Array<String> = [];
+  entitySetList: Array<string> =  [];
+  selectedEntitySet: Array<string> = [];
 
   constructor(private entityService: EntityService,
     private _hotkeysService: HotkeysService) { }
@@ -26,6 +26,10 @@ export class EntitytypeListComponent implements OnInit {
       this.entityTypes = result;
       this.onEntitySelect(this.entityTypes[0]);
       this.addHotkeys();
+    });
+    // load entitySetNames
+    this.entityService.getEntitySetNames().subscribe(result => {
+      this.entitySetList = result;
     });
   }
 
@@ -49,7 +53,6 @@ export class EntitytypeListComponent implements OnInit {
   }
 
   onChangeEntitySet(newValue): void {
-    console.log(newValue);
     this.selectedEntitySet = newValue;
   }
 
