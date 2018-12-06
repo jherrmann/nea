@@ -1,4 +1,11 @@
 <h2 class="mat-h2">Entity Types</h2>
+
+<mat-form-field>
+  <mat-select placeholder="Entity Sets" [value]="selectedEntitySet" (valueChange)="onChangeEntitySet($event)" multiple>
+    <mat-option *ngFor="let entityset of entitySetList" [value]="entityset">{{entityset}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
 <mat-nav-list class="scrollable">
   <mat-list-item *ngFor="let entityType of entityTypes; last as last" 
     [class.selected]="entityType === selectedEntity"

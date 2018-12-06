@@ -14,6 +14,8 @@ export class EntitytypeListComponent implements OnInit {
   entityTypes: Array<EntityType>;
   selectedEntity: EntityType;
   @Output() selectedEntityEvent = new EventEmitter<EntityType>();
+  entitySetList =  [ 'Set_1', 'Set_2' ];
+  selectedEntitySet: Array<String> = [];
 
   constructor(private entityService: EntityService,
     private _hotkeysService: HotkeysService) { }
@@ -43,6 +45,12 @@ export class EntitytypeListComponent implements OnInit {
     this.selectedEntity = entity;
     // inform parent about selected entity type
     this.selectedEntityEvent.emit(entity);
+
+  }
+
+  onChangeEntitySet(newValue): void {
+    console.log(newValue);
+    this.selectedEntitySet = newValue;
   }
 
 }
