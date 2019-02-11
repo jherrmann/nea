@@ -5,4 +5,5 @@
   font-size: 14pt;
   line-height: 22pt;
   height: 400px;
+  white-space: pre-wrap;
 }
