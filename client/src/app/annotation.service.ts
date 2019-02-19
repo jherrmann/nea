@@ -60,7 +60,7 @@ export class AnnotationService {
   }
 
   private tokenize(text: string): Array<string> {
-    return text.split(/(\s|\.|,|\(|\)|\[|\]|%)/g);
+    return text.split(/(\s|\.|,|\(|\)|\[|\]|%|-|\/|\\|_|\||\{|\}|:|")/g);
   }
 
   private setEntitiesForTokens(tokens: Array<string>, namedEntities: Array<NamedEntity>) {
