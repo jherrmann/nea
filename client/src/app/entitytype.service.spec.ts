@@ -1,11 +1,16 @@
-import { TestBed, inject } from '@angular/core/testing';
-
+import { HttpClient } from '@angular/common/http';
+import { inject, TestBed } from '@angular/core/testing';
 import { EntityService } from './entitytype.service';
+
+
+class MockHttpService {
+
+}
 
 describe('EntityService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EntityService]
+      providers: [EntityService, { provide: HttpClient, useClass: MockHttpService }]
     });
   });
 

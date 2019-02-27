@@ -1,15 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { EntitytypeListComponent } from './entitytype-list.component';
-import { EntityService } from '../entitytype.service';
-import { EntityType } from '../entitytype';
 import { MatListModule } from '@angular/material/list';
-import { HotkeysService, Hotkey } from 'angular2-hotkeys';
+import { MatSelectModule } from '@angular/material/select';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Hotkey, HotkeysService } from 'angular2-hotkeys';
+import { Observable } from 'rxjs';
+import { EntityType } from '../entitytype';
+import { EntityService } from '../entitytype.service';
+import { EntitytypeListComponent } from './entitytype-list.component';
+
 
 class MockEntityService {
-  getEntities(): Array<EntityType> {
-    return [new EntityType('PT_SKONTO_PERCENT', 'green')];
-  }
+  getEntities(setNames: Array<string>): Observable<Array<EntityType>> { return new Observable() };
+  getEntitySetNames(): Observable<Array<string>> { return new Observable() };
 };
 
 class MockHotkeysService {
@@ -24,7 +26,7 @@ describe('EntitytypeListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MatListModule],
+      imports: [MatListModule, MatSelectModule, NoopAnimationsModule],
       declarations: [EntitytypeListComponent],
       providers: [{ provide: EntityService, useClass: MockEntityService }, { provide: HotkeysService, useClass: MockHotkeysService }]
     })
