@@ -12,6 +12,7 @@ var namedEntitySchema = new Schema({
 const annotationSchema = new Schema({
   job: { type: Schema.Types.ObjectId },
   anno_set_name: { type: String },
+  name: { type: String },
   text: { type: String, required: true },
   named_entities: [namedEntitySchema],
   created_by: { type: String },

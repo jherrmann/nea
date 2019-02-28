@@ -8,6 +8,8 @@
 
 
 <mat-nav-list class="scrollable">
-  <mat-list-item *ngFor="let anno of annos; index as i" [class.selected]="anno.id === selectedAnno" (click)="onSelect(anno, i)">{{anno.id}}
+  <mat-list-item *ngFor="let anno of annos; index as i" [class.selected]="anno.id === selectedAnno" (click)="onSelect(anno, i)">
+    <h4 mat-line>{{anno.name}}</h4>
+    <p mat-line> {{anno.id}} </p>
   </mat-list-item>
 </mat-nav-list>

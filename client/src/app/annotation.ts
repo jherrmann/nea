@@ -3,6 +3,7 @@ import { EntityType } from './entitytype';
 export class Annotation {
   id: string;
   text: string;
+  name: string;
   tokens: Array<string>;
   entities: Array<EntityType>;
 }
@@ -22,5 +23,6 @@ export class AnnotationSource {
   last_modified_by: string;
   last_modified_date: Date;
   anno_set_name: string;
+  name: string;
   named_entities: NamedEntity[];
 }

@@ -68,7 +68,7 @@ app.get('/api/namedentities/', (req, res) => {
         query = { anno_set_name: {"$in": sets } } 
     }
 
-    Annotation.find(query, '_id' , function (err, annos) {
+    Annotation.find(query, { '_id': true, 'name': true }).sort({name: 'asc'}).exec(function (err, annos) {
         if (err) throw err;
         return res.status(200).json(annos)
     });

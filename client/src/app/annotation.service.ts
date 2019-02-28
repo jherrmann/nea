@@ -51,6 +51,7 @@ export class AnnotationService {
         return result.map(annoSource => {
           const anno = new Annotation();
           anno.id = annoSource['_id'];
+          anno.name = annoSource['name'];
           return anno;
         });
       }),
