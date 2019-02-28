@@ -18,6 +18,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 class MockAnnotationService {
   getAnnotation(): Observable<Array<Annotation>> { return new Observable() };
   getAllAnnotations(): Observable<Array<Annotation>> { return new Observable() };
+  getAnnotationSetNames(): Observable<Array<string>> { return new Observable() };
 };
 
 class MockEntityService {
