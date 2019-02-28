@@ -1,4 +1,12 @@
 <h2 class="mat-h2">Texts</h2>
+
+<mat-form-field>
+  <mat-select placeholder="Annotation Sets" [value]="selectedAnnoSet" (valueChange)="onChangeAnnotationSet($event)" multiple>
+    <mat-option *ngFor="let annoset of annoSetList" [value]="annoset">{{annoset}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
 <mat-nav-list class="scrollable">
   <mat-list-item *ngFor="let anno of annos; index as i" [class.selected]="anno.id === selectedAnno" (click)="onSelect(anno, i)">{{anno.id}}
   </mat-list-item>

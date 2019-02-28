@@ -52,9 +52,23 @@ app.get('/api/namedentities/:annoId', (req, res) => {
         });
 })
 
+app.get('/api/annotationsets/', (req, res) => {
+
+    Annotation.distinct('anno_set_name', function (err, entities) {
+        if (err) throw err;
+        return res.status(200).json(entities)
+    });
+})
+
 app.get('/api/namedentities/', (req, res) => {
 
-    Annotation.find({}, '_id' , function (err, annos) {
+    let sets = req.query.sets;
+    let query = {}
+    if(sets) {
+        query = { anno_set_name: {"$in": sets } } 
+    }
+
+    Annotation.find(query, '_id' , function (err, annos) {
         if (err) throw err;
         return res.status(200).json(annos)
     });

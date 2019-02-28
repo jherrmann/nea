@@ -13,12 +13,18 @@ export class AnnotationListComponent implements OnInit {
   selectedAnno: string;
   selectedAnnoIndex: number;
   @Output() selectedAnnoEvent = new EventEmitter<string>();
+  annoSetList: Array<string> =  [];
+  selectedAnnoSet: Array<string> = [];
 
   constructor(private annotationService: AnnotationService) { }
 
   ngOnInit() {
     // load annotations List
-    this.annotationService.getAllAnnotations().subscribe(result => this.annos = result);
+    this.loadAnnotations(this.selectedAnnoSet);
+    // load annotationSetNames
+    this.annotationService.getAnnotationSetNames().subscribe(result => {
+      this.annoSetList = result;
+    });
   }
 
   onSelect(anno: Annotation, index: number): void {
@@ -39,6 +45,15 @@ export class AnnotationListComponent implements OnInit {
       this.onSelect(this.annos[this.selectedAnnoIndex - 1], this.selectedAnnoIndex - 1);
       console.log('move to previous');
     }
+  }
+
+  onChangeAnnotationSet(annoSet: Array<string>): void {
+    this.selectedAnnoSet = annoSet;
+    this.loadAnnotations(annoSet)
+  }
+
+  loadAnnotations(annoSet: Array<string>): void {
+    this.annotationService.getAllAnnotations(annoSet).subscribe(result => this.annos = result);
   }
 
 }

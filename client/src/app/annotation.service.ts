@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Annotation, NamedEntity } from './annotation';
 import { EntityService } from './entitytype.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type': 'application/json'
     // 'Authorization': 'my-auth-token'
   })
 };
@@ -35,11 +35,20 @@ export class AnnotationService {
     );
   }
 
-  getAllAnnotations(): Observable<Array<Annotation>> {
+  getAllAnnotations(setNames: Array<string>): Observable<Array<Annotation>> {
     const url = `${this.serverUrl}`;
-    return this.http.get<Array<Annotation>>(url).pipe(
-        map(result => {
-        return result.map( annoSource => {
+
+    // annotation set names are passed to the query param sets as array
+    let params = new HttpParams();
+    if (setNames) {
+      setNames.forEach(setname => {
+        params = params.append(`sets[]`, setname);
+      });
+    }
+
+    return this.http.get<Array<Annotation>>(url, { params: params }).pipe(
+      map(result => {
+        return result.map(annoSource => {
           const anno = new Annotation();
           anno.id = annoSource['_id'];
           return anno;
@@ -49,7 +58,12 @@ export class AnnotationService {
     );
   }
 
-  updateAnnotation (annotation: Annotation): Observable<Array<NamedEntity>> {
+  getAnnotationSetNames(): Observable<Array<string>> {
+    const url = 'api/annotationsets';
+    return this.http.get<Array<string>>(url);
+  }
+
+  updateAnnotation(annotation: Annotation): Observable<Array<NamedEntity>> {
     const url = `${this.serverUrl}/${annotation.id}`;
     const entities = this.createNamedEntities(annotation);
     return this.http.put<Array<NamedEntity>>(url, entities, httpOptions)
@@ -73,7 +87,7 @@ export class AnnotationService {
       if (nrOfEntites > 0) {
         let currentStart = 0;
         let currentEnd = 0;
-        let currentEntity =  namedEntities[currentEntityIdx];
+        let currentEntity = namedEntities[currentEntityIdx];
 
         for (const element of tokens) {
           currentStart = currentEnd;
