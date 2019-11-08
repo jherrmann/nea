@@ -16,7 +16,7 @@ export class AnnotatorComponent implements OnInit {
   annotation: Annotation;
   selectedEntity: EntityType;
 
-  @ViewChild(AnnotationListComponent)
+  @ViewChild(AnnotationListComponent, { static: true })
   private annotationListComponent: AnnotationListComponent;
 
   constructor(private annotationService: AnnotationService) { }
