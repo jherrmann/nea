@@ -29,6 +29,7 @@ export class AnnotationService {
         anno.text = result['text'];
         anno.tokens = this.tokenize(result['text']);
         anno.entities = this.setEntitiesForTokens(anno.tokens, result['named_entities']);
+        anno.classes = new Set(result['classes']);
         return anno;
       }),
       catchError(err => { throw Error(err); })

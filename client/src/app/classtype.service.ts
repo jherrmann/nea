@@ -14,7 +14,7 @@ export class ClasstypeService {
   constructor(private http: HttpClient) { }
 
   getClassTypes(): Set<ClassType> {
-    let classes = new Set<ClassType>().add(new ClassType("discount", "green")).add(new ClassType("discount_hint","lightgreen"));
+    let classes = new Set<ClassType>().add(new ClassType("DISCOUNT_SENT", "PT_DISCOUNT")).add(new ClassType("DISCOUNT_REFERENCE_SENT", "PT_DISCOUNT"));
     return classes;
   }
 }

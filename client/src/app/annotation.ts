@@ -7,7 +7,7 @@ export class Annotation {
   name: string;
   tokens: Array<string>;
   entities: Array<EntityType>;
-  classes: Array<ClassType>;
+  classes: Set<string>;
 }
 export class NamedEntity {
   entity: string;
