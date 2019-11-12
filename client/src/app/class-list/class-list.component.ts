@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassType } from '../classtype';
+import { ClasstypeService } from '../classtype.service';
 
 @Component({
   selector: 'app-class-list',
@@ -9,16 +10,16 @@ import { ClassType } from '../classtype';
 export class ClassListComponent implements OnInit {
 
   classTypes: Set<ClassType>;
-  selectedClassesSet: Set<ClassType> = new Set;
+  selectedClassesSet: Set<ClassType> = new Set();
 
-  constructor() { }
+  constructor(private classTypeService: ClasstypeService) { }
 
   ngOnInit() {
-    this.classTypes = new Set<ClassType>().add(new ClassType("discount", "green")).add(new ClassType("discount_hint","lightgreen"));
+    this.classTypes = this.classTypeService.getClassTypes();
   }
 
   onSelect(clazz: ClassType, index: number): void {
-    if(this.selectedClassesSet.has(clazz)) {
+    if (this.selectedClassesSet.has(clazz)) {
       this.selectedClassesSet.delete(clazz);
     } else {
       this.selectedClassesSet.add(clazz);

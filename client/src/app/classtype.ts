@@ -1,9 +1,9 @@
 export class ClassType {
     name: string;
-    color: string;
+    classSet: string;
 
-    constructor(name: string, color: string) {
+    constructor(name: string, classSet: string) {
         this.name = name;
-        this.color = color;
+        this.classSet = classSet;
     }
 }

@@ -1,4 +1,5 @@
 import { EntityType } from './entitytype';
+import { ClassType } from './classtype';
 
 export class Annotation {
   id: string;
@@ -6,6 +7,7 @@ export class Annotation {
   name: string;
   tokens: Array<string>;
   entities: Array<EntityType>;
+  classes: Array<ClassType>;
 }
 export class NamedEntity {
   entity: string;
@@ -25,4 +27,5 @@ export class AnnotationSource {
   anno_set_name: string;
   name: string;
   named_entities: NamedEntity[];
+  classes: string[]
 }
