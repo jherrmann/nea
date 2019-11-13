@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const Annotation = require('./model/annotation');
 const EntityType = require('./model/entitytype');
+const ClassType = require('./model/classtype');
 const url = 'mongodb://localhost/neaDB';
 
 app.use(bodyParser.json())
