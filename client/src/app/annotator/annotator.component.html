@@ -16,7 +16,7 @@
                     <span *ngFor="let word of annotation.tokens;let i=index" [ngClass]="calcClass(i)" (click)="toggleTag(i)">{{word}}</span>
                 </mat-card-content>
                 <mat-card-content >
-                    <app-class-list [annotation]="annotation"></app-class-list>
+                    <app-class-list [selectedClassesSet]="annotation.classes"></app-class-list>
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-button (click)="previousAnno()">Previous</button>

@@ -13,19 +13,16 @@ export class ClassListComponent implements OnChanges, OnInit {
   classTypes: Set<ClassType>;
 
   @Input()
-  annotation: Annotation;
-
-  selectedClassesSet: Set<string> = new Set();
+  selectedClassesSet: Set<string>;
 
   constructor(private classTypeService: ClasstypeService) { }
 
   ngOnInit() {
     this.classTypes = this.classTypeService.getClassTypes();
-    this.selectedClassesSet = this.annotation.classes;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.selectedClassesSet = changes.annotation.currentValue.classes;
+    this.selectedClassesSet = changes.selectedClassesSet.currentValue;
   }
 
   onSelect(clazz: ClassType): void {
