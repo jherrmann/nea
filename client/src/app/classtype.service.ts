@@ -1,7 +1,8 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ClassType } from './classtype';
 import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { ClassType } from './classtype';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,26 @@ import { Observable } from 'rxjs';
 export class ClasstypeService {
 
   private serverUrl = "api/classtypes"
-  private classTypes: Set<ClassType>;
 
   constructor(private http: HttpClient) { }
 
-  getClassTypes(): Set<ClassType> {
-    let classes = new Set<ClassType>().add(new ClassType("DISCOUNT_SENT", "PT_DISCOUNT")).add(new ClassType("DISCOUNT_REFERENCE_SENT", "PT_DISCOUNT"));
-    return classes;
+  getClassTypes(): Observable<Set<ClassType>> {
+    let params = new HttpParams();
+    // TODO add option to filter by set
+    // if(setNames) {
+    //   setNames.forEach(setname => {
+    //     params = params.append(`sets[]`, setname);
+    //   });
+    // }
+
+    return this.http.get<Array<ClassType>>(this.serverUrl, { params: params }).pipe(
+      map(result => {
+        return new Set(result.map(classtypeSource => {
+          const classType = new ClassType(classtypeSource['name'], classtypeSource['set']);
+          return classType;
+        }));
+      }),
+      catchError(err => { throw Error(err); })
+    );
   }
 }

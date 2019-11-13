@@ -18,7 +18,14 @@ export class ClassListComponent implements OnChanges, OnInit {
   constructor(private classTypeService: ClasstypeService) { }
 
   ngOnInit() {
-    this.classTypes = this.classTypeService.getClassTypes();
+    this.classTypeService.getClassTypes().subscribe({
+      next: (result: Set<ClassType>) => {
+        this.classTypes = result;
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {

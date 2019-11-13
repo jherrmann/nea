@@ -44,6 +44,28 @@ app.get('/api/entitysets/', (req, res) => {
     });
 })
 
+app.get('/api/classtypes/', (req, res) => {
+
+    let sets = req.query.sets;
+    let query = {}
+    if(sets) {
+        query = { set: {"$in": sets } } 
+    }
+
+    ClassType.find(query, function (err, classes) {
+        if (err) throw err;
+        return res.status(200).json(classes)
+    });
+})
+
+app.get('/api/classtypes/', (req, res) => {
+
+    ClassType.distinct('set', function (err, classes) {
+        if (err) throw err;
+        return res.status(200).json(classes)
+    });
+})
+
 app.get('/api/annotations/:annoId', (req, res) => {
 
         Annotation.findById(req.params.annoId, function (err, anno) {
