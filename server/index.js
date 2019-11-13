@@ -13,7 +13,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Connecting to the database
 mongoose.connect(url, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }).then(() => {
     console.log("Successfully connected to the database");    
 }).catch(err => {
@@ -43,8 +44,7 @@ app.get('/api/entitysets/', (req, res) => {
     });
 })
 
-// http://localhost:3000/api/namedentities/5b59946547c34d5ac72d7284
-app.get('/api/namedentities/:annoId', (req, res) => {
+app.get('/api/annotations/:annoId', (req, res) => {
 
         Annotation.findById(req.params.annoId, function (err, anno) {
             if (err) throw err;
@@ -60,7 +60,7 @@ app.get('/api/annotationsets/', (req, res) => {
     });
 })
 
-app.get('/api/namedentities/', (req, res) => {
+app.get('/api/annotations/', (req, res) => {
 
     let sets = req.query.sets;
     let query = {}
@@ -74,19 +74,20 @@ app.get('/api/namedentities/', (req, res) => {
     });
 })
 
-app.put('/api/namedentities/:annoId', (req, res) => {
+app.put('/api/annotations/:annoId', (req, res) => {
     // Validate Request
     if(!req.body) {
         return res.status(400).send({
-            message: "Named Entities content can not be empty"
+            message: "Annotation content can not be empty"
         });
     }
 
     // Find Annotation and update it with the request body
     Annotation.findByIdAndUpdate(req.params.annoId, {
-        named_entities: req.body,
+        named_entities: req.body.named_entities,
+        classes: req.body.classes,
         last_modified_date: new Date()
-    }, {new: true})
+    }, {new: true, useFindAndModify: false})
     .then(anno => {
         if(!anno) {
             return res.status(404).send({

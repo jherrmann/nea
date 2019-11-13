@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Annotation, NamedEntity } from './annotation';
+import { Annotation, NamedEntity, AnnotationSource } from './annotation';
 import { EntityService } from './entitytype.service';
 
 const httpOptions = {
@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class AnnotationService {
 
-  private serverUrl = 'api/namedentities';
+  private serverUrl = 'api/annotations';
   constructor(private http: HttpClient, private entityTypeService: EntityService) { }
 
   getAnnotation(id: string): Observable<Annotation> {
@@ -65,10 +65,12 @@ export class AnnotationService {
     return this.http.get<Array<string>>(url);
   }
 
-  updateAnnotation(annotation: Annotation): Observable<Array<NamedEntity>> {
+  updateAnnotation(annotation: Annotation): Observable<AnnotationSource> {
     const url = `${this.serverUrl}/${annotation.id}`;
-    const entities = this.createNamedEntities(annotation);
-    return this.http.put<Array<NamedEntity>>(url, entities, httpOptions)
+    const annotation_payload = new AnnotationSource();
+    annotation_payload.named_entities = this.createNamedEntities(annotation);
+    annotation_payload.classes = Array.from(annotation.classes);
+    return this.http.put<AnnotationSource>(url, annotation_payload, httpOptions)
       .pipe(
         tap(_ => console.log(`updated annotation id=${annotation.id}`)),
         catchError(err => { throw Error(err); })

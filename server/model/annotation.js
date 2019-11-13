@@ -15,6 +15,7 @@ const annotationSchema = new Schema({
   name: { type: String },
   text: { type: String, required: true },
   named_entities: [namedEntitySchema],
+  classes: [String],
   created_by: { type: String },
   created_date: { type: Date },
   last_modified_by: { type: String },
