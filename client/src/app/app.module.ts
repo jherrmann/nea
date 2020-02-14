@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +25,7 @@ import { AnnotatorComponent } from './annotator-editor/annotator-editor.componen
 import { AnnotationListComponent } from './annotation-list/annotation-list.component';
 import { EntitytypeListComponent } from './entitytype-list/entitytype-list.component';
 import { ClassListComponent } from './class-list/class-list.component';
+import { AnnotatorViewComponent } from './annotator-view/annotator-view.component';
 
 
 @NgModule({
@@ -31,12 +34,14 @@ import { ClassListComponent } from './class-list/class-list.component';
     AnnotatorComponent,
     AnnotationListComponent,
     EntitytypeListComponent,
-    ClassListComponent
+    ClassListComponent,
+    AnnotatorViewComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FlexLayoutModule, 
     MatCardModule,
     MatRadioModule,
     MatListModule,
