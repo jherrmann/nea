@@ -10,7 +10,7 @@
 
 mat-nav-list.scrollable {
     flex-grow: 1;
-    height: 600px;
+    height: 529px;
     width: 300px;
     overflow: auto;
 }

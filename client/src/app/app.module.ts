@@ -12,14 +12,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { FormsModule } from '@angular/forms';
 
 import { HotkeyModule } from 'angular2-hotkeys';
 
 import { AppComponent } from './app.component';
-import { AnnotatorComponent } from './annotator/annotator.component';
+import { AnnotatorComponent } from './annotator-editor/annotator-editor.component';
 import { AnnotationListComponent } from './annotation-list/annotation-list.component';
 import { EntitytypeListComponent } from './entitytype-list/entitytype-list.component';
 import { ClassListComponent } from './class-list/class-list.component';
@@ -45,7 +45,7 @@ import { ClassListComponent } from './class-list/class-list.component';
     MatToolbarModule,
     MatDividerModule,
     MatIconModule,
-    MatSelectModule, 
+    MatSelectModule,
     FormsModule,
     MatChipsModule,
     HotkeyModule.forRoot()

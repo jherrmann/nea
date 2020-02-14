@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnnotatorComponent } from './annotator.component';
+import { AnnotatorComponent } from './annotator-editor.component';
 import { AnnotationService } from '../annotation.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
