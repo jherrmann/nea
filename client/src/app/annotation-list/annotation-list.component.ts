@@ -43,7 +43,6 @@ export class AnnotationListComponent implements OnInit {
   previous(): void {
     if (this.selectedAnnoIndex - 1 >= 0 && this.annos.length > this.selectedAnnoIndex - 1) {
       this.onSelect(this.annos[this.selectedAnnoIndex - 1], this.selectedAnnoIndex - 1);
-      console.log('move to previous');
     }
   }
 

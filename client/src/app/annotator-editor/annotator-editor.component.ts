@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
 import { AnnotationService } from '../annotation.service';
 import { AnnotationListComponent } from '../annotation-list/annotation-list.component';
 
@@ -6,18 +6,18 @@ import { Annotation } from '../annotation';
 import { EntityType } from '../entitytype';
 
 @Component({
-  selector: 'app-annotator',
-  templateUrl: './annotator.component.html',
-  styleUrls: ['./annotator.component.css']
+  selector: 'app-annotator-editor',
+  templateUrl: './annotator-editor.component.html',
+  styleUrls: ['./annotator-editor.component.css']
 })
-export class AnnotatorComponent implements OnInit {
+export class AnnotatorEditorComponent implements OnInit {
 
   anno_id: string;
   annotation: Annotation;
   selectedEntity: EntityType;
 
-  @ViewChild(AnnotationListComponent, { static: true })
-  private annotationListComponent: AnnotationListComponent;
+  @Output() selectedNextAnnoEvent = new EventEmitter<void>();
+  @Output() selectedPreviousAnnoEvent = new EventEmitter<void>();
 
   constructor(private annotationService: AnnotationService) { }
 
@@ -47,14 +47,14 @@ export class AnnotatorComponent implements OnInit {
   }
 
   nextAnno(): void {
-    this.annotationListComponent.next();
+    this.selectedNextAnnoEvent.emit();
   }
 
   previousAnno(): void {
-    this.annotationListComponent.previous();
+    this.selectedPreviousAnnoEvent.emit();
   }
 
-  calcClass(index) {
+  calcClass(index: number) {
     const currentEntity = this.annotation.entities[index];
     if (currentEntity) {
       return currentEntity.color + 'Entity';
@@ -63,7 +63,7 @@ export class AnnotatorComponent implements OnInit {
     }
   }
 
-  toggleTag(index) {
+  toggleTag(index: number) {
     if (this.annotation.entities[index]) {
       this.annotation.entities[index] = null;
     } else {

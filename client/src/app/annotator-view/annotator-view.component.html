@@ -1,0 +1,17 @@
+<mat-grid-list cols="4" rowHeight="650px">
+    <mat-grid-tile>
+  
+      <app-entitytype-list (selectedEntityEvent)="onEntitySelect($event)"></app-entitytype-list>
+  
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+  
+        <app-annotator-editor (selectedNextAnnoEvent)="nextAnno()" (selectedPreviousAnnoEvent)="previousAnno()"></app-annotator-editor>
+
+    </mat-grid-tile>
+    <mat-grid-tile>
+  
+      <app-annotation-list (selectedAnnoEvent)="onAnnoSelect($event)"></app-annotation-list>
+  
+    </mat-grid-tile>
+  </mat-grid-list>

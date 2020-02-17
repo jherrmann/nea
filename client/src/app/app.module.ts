@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { HotkeyModule } from 'angular2-hotkeys';
 
 import { AppComponent } from './app.component';
-import { AnnotatorComponent } from './annotator-editor/annotator-editor.component';
+import { AnnotatorEditorComponent } from './annotator-editor/annotator-editor.component';
 import { AnnotationListComponent } from './annotation-list/annotation-list.component';
 import { EntitytypeListComponent } from './entitytype-list/entitytype-list.component';
 import { ClassListComponent } from './class-list/class-list.component';
@@ -31,11 +31,11 @@ import { AnnotatorViewComponent } from './annotator-view/annotator-view.componen
 @NgModule({
   declarations: [
     AppComponent,
-    AnnotatorComponent,
+    AnnotatorViewComponent,
+    AnnotatorEditorComponent,
     AnnotationListComponent,
     EntitytypeListComponent,
-    ClassListComponent,
-    AnnotatorViewComponent
+    ClassListComponent
   ],
   imports: [
     BrowserModule,

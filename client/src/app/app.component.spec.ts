@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
   selector: 'app-annotator',
   template: ''
 })
-class MockAnnotatorComponent {
+class MockAnnotatorEditorComponent {
   selector: 'app-annotator';
   template: '';
   styleUrls: [''];
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [MatCardModule, MatGridListModule, MatListModule, MatToolbarModule],
       declarations: [
-        AppComponent, MockAnnotatorComponent
+        AppComponent, MockAnnotatorEditorComponent
       ],
     }).compileComponents();
   }));

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnnotatorComponent } from './annotator-editor.component';
+import { AnnotatorEditorComponent } from './annotator-editor.component';
 import { AnnotationService } from '../annotation.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -26,21 +26,21 @@ class MockEntityService {
   getEntitySetNames(): Observable<Array<string>> { return new Observable() };
 };
 
-describe('AnnotatorComponent', () => {
-  let component: AnnotatorComponent;
-  let fixture: ComponentFixture<AnnotatorComponent>;
+describe('AnnotatorEditorComponent', () => {
+  let component: AnnotatorEditorComponent;
+  let fixture: ComponentFixture<AnnotatorEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MatCardModule, MatGridListModule, MatListModule, MatSelectModule, NoopAnimationsModule],
-      declarations: [EntitytypeListComponent, AnnotatorComponent, AnnotationListComponent],
+      declarations: [EntitytypeListComponent, AnnotatorEditorComponent, AnnotationListComponent],
       providers: [{ provide: AnnotationService, useClass: MockAnnotationService }, { provide: EntityService, useClass: MockEntityService }, { provide: HotkeysService }]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AnnotatorComponent);
+    fixture = TestBed.createComponent(AnnotatorEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
